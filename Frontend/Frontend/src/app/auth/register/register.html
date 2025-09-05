@@ -1,0 +1,60 @@
+<form [formGroup]="registerForm" (ngSubmit)="register()">
+  <div class="form-container">
+
+    <!-- Mensaje de error general -->
+    <p *ngIf="registerError" class="alert alert-danger">{{ registerError }}</p>
+
+    <!-- Mensaje de éxito -->
+    <p *ngIf="registerMessage" class="alert alert-success">{{ registerMessage }}</p>
+
+    <!-- Email -->
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
+      <input formControlName="email"
+             type="email"
+             class="form-control"
+             id="exampleInputEmail1"
+             aria-describedby="emailHelp">
+      <div *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)"
+           class="alert alert-danger">
+        <div *ngIf="registerForm.get('email')?.errors?.['required']">El email es requerido.</div>
+        <div *ngIf="registerForm.get('email')?.errors?.['email']">El email debe tener un formato válido.</div>
+      </div>
+    </div>
+
+    <!-- Nombre -->
+    <div class="mb-3">
+      <label for="exampleInputName1" class="form-label">Nombre</label>
+      <input formControlName="name"
+             type="text"
+             class="form-control"
+             id="exampleInputName1"
+             aria-describedby="nameHelp">
+      <div *ngIf="registerForm.get('name')?.invalid && (registerForm.get('name')?.dirty || registerForm.get('name')?.touched)"
+           class="alert alert-danger">
+        <div *ngIf="registerForm.get('name')?.errors?.['required']">El nombre es requerido.</div>
+        <div *ngIf="registerForm.get('name')?.errors?.['pattern']">El nombre solo debe contener letras.</div>
+      </div>
+    </div>
+
+    <!-- Password -->
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+      <input formControlName="password"
+             type="password"
+             class="form-control"
+             id="exampleInputPassword1">
+      <div *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)"
+           class="alert alert-danger">
+        <div *ngIf="registerForm.get('password')?.errors?.['required']">La contraseña es requerida.</div>
+      </div>
+    </div>
+
+    <!-- Botón -->
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-primary">Registrar</button>
+      <button type="button" class="btn btn-primary" (click)="VolverInicio()">Volver</button>
+    </div>
+
+  </div>
+</form>

@@ -1,0 +1,39 @@
+<div class="form-container">
+  <div *ngIf="viewError" class="alert alert-danger">
+    {{ viewError }}
+  </div>
+
+  <div *ngIf="viewMessage" class="alert alert-success">
+    {{ viewMessage }}
+  </div>
+
+  <form [formGroup]="viewForm" (ngSubmit)="view()">
+    <div class="mb-3">
+      <label for="id" class="form-label">Ingrese ID del usuario</label>
+      <input 
+        type="text" 
+        class="form-control" 
+        id="id" 
+        formControlName="id" 
+        placeholder="Ej: 1234" />
+
+      <div *ngIf="viewForm.get('id')?.invalid && (viewForm.get('id')?.dirty || viewForm.get('id')?.touched)" 
+           class="alert alert-danger mt-2">
+        <div *ngIf="viewForm.get('id')?.errors?.['required']">El ID es requerido.</div>
+      </div>
+    </div>
+
+    <div class="d-flex mt-3 gap-2">
+      <button type="submit" class="btn btn-primary">Buscar Usuario</button>
+      <button class="btn btn-primary" (click)="VolverMenuOpciones()">Volver</button>
+    </div>
+  </form>
+
+  <div *ngIf="user" class="card mt-3">
+    <div class="card-body">
+      <p class="card-text"><strong>Nombre:</strong> {{ user.name }}</p>
+      <p class="card-text"><strong>Email:</strong> {{ user.email }}</p>
+      <p class="card-text"><strong>Rol:</strong> {{ user.role }}</p>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,38 @@
+# ======================
+# Backend (.NET)
+# ======================
+# Archivos de compilación
 bin/
 obj/
+# Configuración del entorno de desarrollo
 .vs/
+# Configuración sensible
 appsettings.json
 appsettings.Development.json
+
+# ======================
+# Frontend (Node / Angular / React / Vue)
+# ======================
+# Dependencias pesadas
+node_modules/
+# Archivos de compilación / producción
+dist/
+build/
+out/
+# Configuración local de VSCode
+.vscode/
+
+# ======================
+# Archivos temporales / sistema
+# ======================
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+
+# ======================
+# Archivos de entorno / secretos
+# ======================
+.env
+.env.local
+.env.*.local

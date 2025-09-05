@@ -98,7 +98,7 @@ namespace Backend.Estructura
                 return new Resultado { Success = false, Mensaje = "El ID es obligatorio" };
             if (!BaseDatos.VerificarID(ID))
                 return new Resultado { Success = false, Mensaje = "Este ID no corresponde a ningun usuario." };
-            var usuario = new Operaciones_Usuarios();
+            var usuario = new Mostrar_Usuario();
 
             try
             {
@@ -187,7 +187,7 @@ namespace Backend.Estructura
 
         public Resultado Listar_Usuarios (Usuarios_BD Base_Datos)
         {
-           return new Resultado { Success = true, Mensaje = "Usuarios listados corrrectamente", Datos = Base_Datos.ListarUsuarios() };
+           return new Resultado { Success = true, Mensaje = "Usuarios", Datos = Base_Datos.ListarUsuarios() };
         }
     }
 }

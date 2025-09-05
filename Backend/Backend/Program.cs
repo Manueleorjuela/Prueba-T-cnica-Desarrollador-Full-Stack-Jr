@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Backend.Estructura; 
+using Backend.Estructura;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +11,6 @@ var builder = WebApplication.CreateBuilder(args);
 var jwtSettings = builder.Configuration.GetSection("Jwt");
 var key = Encoding.UTF8.GetBytes(jwtSettings["Key"]);
 
-// Registro de dependencias personalizadas
 builder.Services.AddScoped<Conexion_BD>();
 builder.Services.AddScoped<Usuarios_BD>();
 builder.Services.AddScoped<Validaciones>();
@@ -42,6 +41,19 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// =======================
+// Habilitar CORS
+// =======================
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("http://localhost:4200") // tu frontend
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 // =======================
@@ -54,7 +66,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors();              
 app.UseAuthentication();
 app.UseAuthorization();
 

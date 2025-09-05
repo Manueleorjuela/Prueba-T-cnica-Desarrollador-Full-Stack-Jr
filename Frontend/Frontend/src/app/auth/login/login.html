@@ -1,0 +1,46 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <div class="form-container">
+
+    <!-- Mensaje de error general -->
+    <p *ngIf="loginError" class="alert alert-danger">{{ loginError }}</p>
+
+    <!-- Mensaje de éxito -->
+    <p *ngIf="loginMessage" class="alert alert-success">{{ loginMessage }}</p>
+
+    <!-- Email -->
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
+      <input formControlName="email"
+             type="email"
+             class="form-control"
+             id="exampleInputEmail1"
+             aria-describedby="emailHelp">
+      <div *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)"
+           class="alert alert-danger">
+        <div *ngIf="loginForm.get('email')?.errors?.['required']">El email es requerido.</div>
+        <div *ngIf="loginForm.get('email')?.errors?.['email']">El email debe tener un formato válido.</div>
+      </div>
+    </div>
+
+    <!-- Password -->
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+      <input formControlName="password"
+             type="password"
+             class="form-control"
+             id="exampleInputPassword1">
+      <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)"
+           class="alert alert-danger">
+        <div *ngIf="loginForm.get('password')?.errors?.['required']">La contraseña es requerida.</div>
+      </div>
+    </div>
+
+    <!-- Botón -->
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-primary">Ingresar</button>
+      <button type="button" class="btn btn-primary" (click)="VolverInicio()">Volver</button>
+    </div>
+
+
+  </div>
+</form>

@@ -188,7 +188,7 @@ namespace Backend.Estructura
             }
         }
 
-        public void Ver_Usuario(string ID, Operaciones_Usuarios usuario)
+        public void Ver_Usuario(string ID, Mostrar_Usuario usuario)
         {
             string query = "SELECT * FROM Users WHERE Id = @Id";
             using (var conn = _conexion.Abrir_Conexion())
@@ -200,7 +200,6 @@ namespace Backend.Estructura
                 {
                     if (reader.Read())
                     {
-                        usuario.Id = reader.GetGuid(reader.GetOrdinal("Id")).ToString();
                         usuario.Email = reader.GetString(reader.GetOrdinal("Email"));
                         usuario.Name = reader.GetString(reader.GetOrdinal("Name"));
                         usuario.Role = reader.GetString(reader.GetOrdinal("Role"));

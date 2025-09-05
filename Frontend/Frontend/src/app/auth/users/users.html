@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+  
+    <span class="navbar-text fw-bold fs-3">Gestión de Usuarios</span>
+    
+    <div class="ms-auto d-flex align-items-center gap-2">
+      <!-- Dropdown -->
+      <div class="dropdown">
+        <button 
+          class="btn btn-outline-primary dropdown-toggle" 
+          type="button" 
+          data-bs-toggle="dropdown" 
+          aria-expanded="false">
+          Opciones
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" (click)="listarUsuarios()">Listar</a></li>
+          <li><a class="dropdown-item" (click)="crearUsuario()">Crear</a></li>
+          <li><a class="dropdown-item" (click)="editarUsuario()">Editar</a></li>
+          <li><a class="dropdown-item" (click)="eliminarUsuario()">Eliminar</a></li>
+          <li><a class="dropdown-item" (click)="verUsuario()">Ver Usuario</a></li>
+        </ul>
+      </div>
+      <button class="btn btn-danger" (click)="CerrarSesion()">Salir</button>
+    </div>
+  </div>
+</nav>
